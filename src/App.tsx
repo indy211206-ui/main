@@ -48,12 +48,19 @@ function ProjectCard({ project }: { project: Project }) {
 function HomePage() {
   return <main className="page-view home-page">
     <section className="hero section-wrap main-home-hero"><div className="hero-copy">
-      <div className="eyebrow hero-eyebrow"><span className="status-dot" /> COMPUTER SCIENCE · {profile.location.toUpperCase()}</div>
-      <h1>Learning Computer Science.<br /><em>Building toward AI.</em></h1>
+      <div className="eyebrow hero-eyebrow"><span className="status-dot" /> COMPUTER SCIENCE STUDENT · {profile.location.toUpperCase()}</div>
+      <p className="hero-kicker">Hello, I’m Photchara.</p>
+      <h1>Understand the roots.<br /><em>Build what’s next.</em></h1>
       <p>{profile.intro}</p>
       <div className="hero-actions"><a className="button button-light" href="#projects">Explore my work <ArrowDown size={16} /></a><a className="button button-quiet" href="#about">A little about me <ArrowRight size={16} /></a></div>
-    </div></section>
-    <section className="intro-strip"><div className="strip-label">A NOTE ON THIS SITE</div><p>A work in progress, by design. <span>Each project is a chance to ask better questions, build with care, and share what I learn.</span></p><a href="#about">Get to know me <ArrowRight size={15} /></a></section>
+      <div className="hero-quickfacts"><div><span>01 / LEARNING</span><strong>Computer science</strong></div><div><span>02 / BUILDING</span><strong>Apps & dashboards</strong></div><div><span>03 / LOOKING AHEAD</span><strong>AI engineering</strong></div></div>
+    </div><aside className="home-workbench" aria-label="A visual summary of Photchara’s build process">
+      <div className="workbench-topbar"><span className="workbench-lights"><i/><i/><i/></span><span>FIELD NOTES <b>01</b></span><span>PHUKET · TH</span></div>
+      <div className="workbench-heading"><span>THE BUILDING LOOP</span><p>Big ideas, understood<br />one layer at a time.</p></div>
+      <div className="build-loop" aria-hidden="true"><div className="loop-ring loop-ring-one"/><div className="loop-ring loop-ring-two"/><span className="loop-step loop-step-one"><b>01</b>LEARN</span><span className="loop-step loop-step-two"><b>02</b>MAKE</span><span className="loop-step loop-step-three"><b>03</b>REFINE</span><div className="loop-core"><span>PT</span><small>CURIOUS<br/>BY NATURE</small></div></div>
+      <div className="workbench-bottom"><span>FROM FIRST PRINCIPLES</span><i/><span>TO SOMETHING REAL</span></div>
+    </aside></section>
+    <section className="intro-strip"><div className="strip-label">HOW I LIKE TO WORK</div><p>Start with the fundamentals. <span>Experiment, make something useful, then keep learning from it.</span></p><a href="#about">More about me <ArrowRight size={15} /></a></section>
     <section className="section-wrap projects-section home-projects"><div className="section-heading"><div><SectionLabel number="01">A FEW THINGS I’VE MADE</SectionLabel><h2>Learning through<br /><em>making things.</em></h2></div><p>Small projects, real source code, and an honest account of what I’m learning as I build.</p></div><div className="project-grid">{projects.slice(0, 3).map(project => <ProjectCard key={project.slug} project={project} />)}</div><a className="text-link all-projects" href="#projects">See all projects <ArrowRight size={16} /></a></section>
   </main>
 }
