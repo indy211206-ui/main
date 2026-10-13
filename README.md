@@ -9,6 +9,10 @@ A responsive React, TypeScript, and Vite portfolio for documenting a student's C
 
 ## Run locally
 
+On Windows, double-click `Open Portfolio.bat` in the project folder. It installs dependencies if needed and opens the local site in your browser.
+
+Or run these commands from the project folder:
+
 ```sh
 npm install
 npm run dev
