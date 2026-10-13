@@ -38,7 +38,7 @@ The production files are written to `dist/`.
 
 ## Deploy
 
-Build with `npm run build` and publish the contents of `dist/` to any static host that supports single-page applications. Configure the host to serve `index.html` for unknown paths. Because this site uses hash navigation, the project detail routes do not require server-side route rewrites. For GitHub Pages, set Vite's `base` in `vite.config.ts` to the repository path before building.
+The `Deploy portfolio to GitHub Pages` workflow builds and publishes the site whenever a commit is pushed to `main`. The public site URL is `https://indy211206-ui.github.io/main/`. In the repository's **Settings → Pages**, set the build and deployment source to **GitHub Actions** if it is not already selected. Because this site uses hash navigation, the project detail routes do not require server-side route rewrites.
 
 ## Before publishing
 
