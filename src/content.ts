@@ -32,18 +32,18 @@ export const projects: Project[] = [
 ]
 
 export const achievements = [
-  { title: 'Codewars · 4 kyu', detail: 'Reached 4 kyu on Codewars under the username Protocoff, building problem-solving fluency through kata.', type: 'CODEWARS RANK', image: '/certificates/codewars-4-kyu.png', imageAlt: 'Codewars profile showing Photchara at 4 kyu', link: 'https://www.codewars.com/users/Protocoff', linkLabel: 'Open Codewars profile' },
-  { title: 'TOI-ZERO Coding Competition', detail: 'Passed the qualification criteria shown on the result dashboard: 20 qualifying A2/A3 problems and 42 problems overall across A1–A3.', type: 'COMPETITION · QUALIFIED', image: '/certificates/toi-zero.png', imageAlt: 'TOI-ZERO results dashboard showing qualification criteria passed', link: '', linkLabel: 'View result screenshot' },
-  { title: 'ELDE Merit Award', detail: 'Senior High School Level · 48/60 (80%) · CEFR B2. The certificate notes a partial scholarship for a BeWise Global Exchange short-term language and cultural programme.', type: 'CERTIFICATE · ENGLISH', image: '/certificates/elde-merit.png', imageAlt: 'ELDE Merit Award certificate showing B2 and 80%', link: '', linkLabel: 'View certificate' },
-  { title: 'English for Communication in Society', detail: 'Completed a 4-hour Thai MOOC course developed by Nakhon Pathom Rajabhat University.', type: 'THAI MOOC · 4 HOURS', image: '/certificates/thai-mooc-english.png', imageAlt: 'Thai MOOC certificate for English for Communication in Society', link: '', linkLabel: 'View certificate' },
-  { title: 'Open House participant', detail: 'Participated in an Open House programme at Phuket Wittayalai School, Phuket · 4 August 2024.', type: 'CERTIFICATE · 2024', image: '/certificates/open-house.png', imageAlt: 'Open House participation certificate dated 4 August 2024', link: '', linkLabel: 'View certificate' },
+  { title: 'Codewars · 4 kyu', detail: 'Reached 4 kyu on Codewars under the username Protocoff, building problem-solving fluency through kata.', type: 'CODEWARS RANK', link: 'https://www.codewars.com/users/Protocoff', linkLabel: 'Open Codewars profile' },
+  { title: 'TOI-ZERO Coding Competition', detail: 'Passed the qualification criteria: 20 qualifying A2/A3 problems and 42 problems overall across A1–A3.', type: 'COMPETITION · QUALIFIED' },
+  { title: 'ELDE Merit Award', detail: 'Senior High School Level · 48/60 (80%) · CEFR B2. The certificate notes a partial scholarship for a BeWise Global Exchange short-term language and cultural programme.', type: 'CERTIFICATE · ENGLISH' },
+  { title: 'English for Communication in Society', detail: 'Completed a 4-hour Thai MOOC course developed by Nakhon Pathom Rajabhat University.', type: 'THAI MOOC · 4 HOURS' },
+  { title: 'Open House participant', detail: 'Participated in an Open House programme at Phuket Wittayalai School, Phuket · 4 August 2024.', type: 'CERTIFICATE · 2024' },
 ]
 
 export const learningCourses = [
-  { title: 'Python Full Course for free', detail: 'Bro Code · YouTube · 12-hour self-study video. No certificate claimed.', type: 'YOUTUBE · SELF-STUDY', image: '/study/python-bro-code.png', imageAlt: 'Bro Code Python Full Course for free video thumbnail' },
-  { title: 'Data Structures and Algorithms Full Course', detail: 'Bro Code · YouTube · 4-hour self-study video. No certificate claimed.', type: 'YOUTUBE · SELF-STUDY', image: '/study/dsa-bro-code.png', imageAlt: 'Bro Code Data Structures and Algorithms Full Course video thumbnail' },
-  { title: 'C++ Data Structures & Algorithms + LeetCode Exercises', detail: 'Scott Barrett · Udemy · 55% complete in the supplied screenshot.', type: 'UDEMY · IN PROGRESS', image: '/study/cpp-udemy-progress.png', imageAlt: 'Udemy course progress screenshot showing 55 percent complete' },
-  { title: 'C++ Full Course for free', detail: 'Bro Code · YouTube · 6-hour self-study video. No certificate claimed.', type: 'YOUTUBE · SELF-STUDY', image: '/study/cpp-bro-code.png', imageAlt: 'Bro Code C++ Full Course video thumbnail' },
-  { title: 'C++ Programming Course — Beginner to Advanced', detail: 'freeCodeCamp.org · YouTube · 31-hour course. Self-study, no certificate claimed.', type: 'YOUTUBE · SELF-STUDY', image: '/study/cpp-freecodecamp.png', imageAlt: 'freeCodeCamp C++ Programming Course video thumbnail' },
-  { title: 'Luau', detail: 'Independent self-study through the official Roblox Luau documentation.', type: 'DOCUMENTATION · SELF-STUDY', image: '', imageAlt: '' },
+  { title: 'Python Full Course for free', detail: 'Bro Code · YouTube · 12-hour self-study video. No certificate claimed.', type: 'YOUTUBE · SELF-STUDY' },
+  { title: 'Data Structures and Algorithms Full Course', detail: 'Bro Code · YouTube · 4-hour self-study video. No certificate claimed.', type: 'YOUTUBE · SELF-STUDY' },
+  { title: 'C++ Data Structures & Algorithms + LeetCode Exercises', detail: 'Scott Barrett · Udemy · In progress (55% at last update).', type: 'UDEMY · IN PROGRESS' },
+  { title: 'C++ Full Course for free', detail: 'Bro Code · YouTube · 6-hour self-study video. No certificate claimed.', type: 'YOUTUBE · SELF-STUDY' },
+  { title: 'C++ Programming Course — Beginner to Advanced', detail: 'freeCodeCamp.org · YouTube · 31-hour course. Self-study, no certificate claimed.', type: 'YOUTUBE · SELF-STUDY' },
+  { title: 'Luau', detail: 'Independent self-study through the official Roblox Luau documentation.', type: 'DOCUMENTATION · SELF-STUDY' },
 ]
