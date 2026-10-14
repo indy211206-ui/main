@@ -1,7 +1,7 @@
 def spiralize(n):
     grid = [[0] * n for _ in range(n)]
 
-    dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # R, D, L, U
+    dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]
     d = 0
 
     r = c = 0
@@ -9,7 +9,7 @@ def spiralize(n):
     for _ in range(n * n):
         grid[r][c] = 1
 
-        # try to go forward
+
         nr = r + dirs[d][0]
         nc = c + dirs[d][1]
 
@@ -19,7 +19,7 @@ def spiralize(n):
             if grid[x][y] == 1:
                 return False
 
-            # 🔥 KEY RULE: prevent self-touch (look ahead one cell gap)
+
             for dx, dy in dirs:
                 ax, ay = x + dx, y + dy
                 if (0 <= ax < n and 0 <= ay < n):

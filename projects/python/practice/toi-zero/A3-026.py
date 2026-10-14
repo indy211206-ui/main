@@ -4,7 +4,7 @@ def Overlay_pic():
     grid1 = []
     grid2 = []
 
-    # No spaces in input — read each char directly
+
     for r in range(rows):
         row = []
         line = input()
@@ -19,7 +19,7 @@ def Overlay_pic():
             row.append(c)
         grid2.append(row)
 
-    # Build result grid
+
     result = []
     for r in range(rows):
         row = []
@@ -29,21 +29,21 @@ def Overlay_pic():
             if a == '-' and b == '-':
                 row.append('-')
             elif a == '-' and b == '+':
-                row.append('+')      # was pass before!
+                row.append('+')
             elif a == '-' and b == 'x':
-                row.append('x')      # was pass before!
+                row.append('x')
             elif a == '+' and b == 'x':
                 row.append('*')
             elif a == 'x' and b == '+':
                 row.append('*')
             else:
-                row.append(a)        # same symbol, keep it
+                row.append(a)
         result.append(row)
 
     for r in range(rows):
         line = ''
         for c in result[r]:
             line += c
-        print(line)                  # print as string, not list
+        print(line)
 
 Overlay_pic()

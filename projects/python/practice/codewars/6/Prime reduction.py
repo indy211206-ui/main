@@ -1,4 +1,4 @@
-# def solve(a,b):
+
 a,b = map(int ,input().split())
 count = 0
 string = str(a)

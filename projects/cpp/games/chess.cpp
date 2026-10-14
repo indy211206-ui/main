@@ -1,14 +1,14 @@
-// Console Chess in pure C++17 (standard library only)
-// Build:  g++ -std=c++17 -O2 -o chess chess.cpp
-// Run:    ./chess
-//
-// Features: full legal move generation, check / checkmate / stalemate,
-// castling, en passant, promotion, 50-move rule, insufficient material,
-// and an optional computer opponent (alpha-beta search).
-//
-// Input: coordinate notation, e.g.  e2e4   e7e8q (promotion)   O-O not needed,
-// just move the king two squares:  e1g1.
-// Commands: moves, board, help, quit
+
+
+
+
+
+
+
+
+
+
+
 
 #include <algorithm>
 #include <array>
@@ -23,16 +23,16 @@ using namespace std;
 
 struct Move {
     int from = 0, to = 0;
-    char promo = 0;  // 'q','r','b','n' or 0
+    char promo = 0;
 };
 
 struct State {
-    array<char, 64> b;  // index = rank*8 + file, rank 0 = White's back rank
+    array<char, 64> b;
     bool white = true;
-    bool wK = true, wQ = true, bK = true, bQ = true;  // castling rights
-    int ep = -1;    // en passant target square
-    int half = 0;   // half-move clock (50-move rule)
-    int full = 1;   // full-move number
+    bool wK = true, wQ = true, bK = true, bQ = true;
+    int ep = -1;
+    int half = 0;
+    int full = 1;
 };
 
 static inline int fileOf(int sq) { return sq & 7; }
@@ -56,11 +56,11 @@ State initialState() {
     return s;
 }
 
-// ---------------------------------------------------------------- attacks
+
 bool isAttacked(const State& s, int sq, bool byWhite) {
     int r = rankOf(sq), f = fileOf(sq);
 
-    // Pawns
+
     int pr = byWhite ? r - 1 : r + 1;
     if (pr >= 0 && pr < 8) {
         char pawn = byWhite ? 'P' : 'p';
@@ -69,7 +69,7 @@ bool isAttacked(const State& s, int sq, bool byWhite) {
             if (pf >= 0 && pf < 8 && s.b[pr * 8 + pf] == pawn) return true;
         }
     }
-    // Knights
+
     static const int kn[8][2] = {{1, 2}, {2, 1}, {-1, 2}, {-2, 1},
                                  {1, -2}, {2, -1}, {-1, -2}, {-2, -1}};
     char knight = byWhite ? 'N' : 'n';
@@ -78,7 +78,7 @@ bool isAttacked(const State& s, int sq, bool byWhite) {
         if (nf >= 0 && nf < 8 && nr >= 0 && nr < 8 && s.b[nr * 8 + nf] == knight)
             return true;
     }
-    // King
+
     char king = byWhite ? 'K' : 'k';
     for (int dr = -1; dr <= 1; dr++)
         for (int df = -1; df <= 1; df++) {
@@ -87,7 +87,7 @@ bool isAttacked(const State& s, int sq, bool byWhite) {
             if (nf >= 0 && nf < 8 && nr >= 0 && nr < 8 && s.b[nr * 8 + nf] == king)
                 return true;
         }
-    // Sliders
+
     char rook = byWhite ? 'R' : 'r', bishop = byWhite ? 'B' : 'b',
          queen = byWhite ? 'Q' : 'q';
     static const int dirs[8][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1},
@@ -119,14 +119,14 @@ bool inCheck(const State& s, bool white) {
     return k >= 0 && isAttacked(s, k, !white);
 }
 
-// ---------------------------------------------------------------- make move
+
 State makeMove(State s, const Move& m) {
     char p = s.b[m.from];
     char cap = s.b[m.to];
     bool pawn = tolower(p) == 'p';
     bool white = s.white;
 
-    // En passant capture
+
     if (pawn && m.to == s.ep && cap == '.' && fileOf(m.from) != fileOf(m.to)) {
         s.b[m.to + (white ? -8 : 8)] = '.';
         cap = 'x';
@@ -135,19 +135,19 @@ State makeMove(State s, const Move& m) {
     s.b[m.to] = p;
     s.b[m.from] = '.';
 
-    // Promotion
+
     if (m.promo) s.b[m.to] = white ? (char)toupper(m.promo) : (char)tolower(m.promo);
 
-    // Castling: move the rook too
+
     if (tolower(p) == 'k' && abs(m.to - m.from) == 2) {
         if (m.to > m.from) { s.b[m.from + 1] = s.b[m.from + 3]; s.b[m.from + 3] = '.'; }
         else               { s.b[m.from - 1] = s.b[m.from - 4]; s.b[m.from - 4] = '.'; }
     }
 
-    // En passant square
+
     s.ep = (pawn && abs(m.to - m.from) == 16) ? (m.from + m.to) / 2 : -1;
 
-    // Castling rights
+
     if (p == 'K') s.wK = s.wQ = false;
     if (p == 'k') s.bK = s.bQ = false;
     for (int sq : {m.from, m.to}) {
@@ -163,7 +163,7 @@ State makeMove(State s, const Move& m) {
     return s;
 }
 
-// ---------------------------------------------------------------- generation
+
 void addPawnMove(vector<Move>& out, int from, int to, bool white) {
     int promoRank = white ? 7 : 0;
     if (rankOf(to) == promoRank) {
@@ -219,7 +219,7 @@ vector<Move> pseudoMoves(const State& s) {
                     char x = s.b[nr * 8 + nf];
                     if (x == '.' || isEnemy(x, w)) out.push_back({sq, nr * 8 + nf, 0});
                 }
-            // Castling
+
             int home = w ? 4 : 60;
             if (sq == home && !isAttacked(s, home, !w)) {
                 bool ks = w ? s.wK : s.bK, qs = w ? s.wQ : s.bQ;
@@ -232,7 +232,7 @@ vector<Move> pseudoMoves(const State& s) {
                     !isAttacked(s, home - 1, !w) && !isAttacked(s, home - 2, !w))
                     out.push_back({sq, home - 2, 0});
             }
-        } else {  // sliders
+        } else {
             int lo = (t == 'b') ? 4 : 0, hi = (t == 'r') ? 4 : 8;
             for (int i = lo; i < hi; i++) {
                 int nf = f + dirs[i][0], nr = r + dirs[i][1];
@@ -261,7 +261,7 @@ vector<Move> legalMoves(const State& s) {
     return out;
 }
 
-// ---------------------------------------------------------------- helpers
+
 string sqName(int sq) {
     return string(1, (char)('a' + fileOf(sq))) + string(1, (char)('1' + rankOf(sq)));
 }
@@ -291,7 +291,7 @@ bool insufficientMaterial(const State& s) {
     return minors <= 1;
 }
 
-// ---------------------------------------------------------------- AI
+
 int pieceValue(char c) {
     switch (tolower(c)) {
         case 'p': return 100;
@@ -303,7 +303,7 @@ int pieceValue(char c) {
     }
 }
 
-int evaluate(const State& s) {  // from side-to-move's perspective
+int evaluate(const State& s) {
     int score = 0;
     for (int sq = 0; sq < 64; sq++) {
         char c = s.b[sq];
@@ -311,11 +311,11 @@ int evaluate(const State& s) {  // from side-to-move's perspective
         int r = rankOf(sq), f = fileOf(sq);
         int v = pieceValue(c);
         char t = (char)tolower(c);
-        if (t != 'k' && t != 'r') {  // centralization bonus
+        if (t != 'k' && t != 'r') {
             double cd = (3.5 - abs(f - 3.5)) + (3.5 - abs(r - 3.5));
             v += (int)(cd * 4);
         }
-        if (t == 'p') v += (isWhitePiece(c) ? r : 7 - r) * 6;  // pawn advancement
+        if (t == 'p') v += (isWhitePiece(c) ? r : 7 - r) * 6;
         score += isWhitePiece(c) ? v : -v;
     }
     return s.white ? score : -score;
@@ -330,7 +330,7 @@ int negamax(const State& s, int depth, int alpha, int beta, int ply) {
     vector<Move> moves = legalMoves(s);
     if (moves.empty()) return inCheck(s, s.white) ? -MATE + ply : 0;
 
-    // Move ordering: captures / promotions first (MVV-LVA-ish)
+
     auto score = [&](const Move& m) {
         int v = pieceValue(s.b[m.to]) * 10 - pieceValue(s.b[m.from]);
         if (m.promo) v += 800;
@@ -358,7 +358,7 @@ Move bestMove(const State& s, int depth) {
     return best;
 }
 
-// ---------------------------------------------------------------- UI
+
 bool parseMove(const string& in, const vector<Move>& legal, Move& out) {
     string t;
     for (char c : in) if (!isspace((unsigned char)c)) t += (char)tolower(c);
@@ -371,7 +371,7 @@ bool parseMove(const string& in, const vector<Move>& legal, Move& out) {
     for (auto& m : legal) {
         if (m.from == from && m.to == to) {
             if (m.promo) {
-                char want = promo ? promo : 'q';  // default to queen
+                char want = promo ? promo : 'q';
                 if (m.promo != want) continue;
             } else if (promo) continue;
             out = m;

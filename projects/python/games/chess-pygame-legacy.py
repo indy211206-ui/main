@@ -5,7 +5,7 @@ from collections import Counter
 
 pygame.init()
 
-# -------------------- Settings --------------------
+
 SQ = 80
 BOARD = SQ * 8
 TOP = 48
@@ -102,7 +102,7 @@ class ChessGame:
         return None
 
     def attacked(self, r, c, by_white):
-        # Pawn attacks
+
         pr = r + 1 if by_white else r - 1
         pawn = "P" if by_white else "p"
 
@@ -111,7 +111,7 @@ class ChessGame:
             if inside(pr, pc) and self.b[pr][pc] == pawn:
                 return True
 
-        # Knight attacks
+
         knight = "N" if by_white else "n"
         for dr, dc in (
             (-2, -1), (-2, 1), (-1, -2), (-1, 2),
@@ -121,7 +121,7 @@ class ChessGame:
             if inside(nr, nc) and self.b[nr][nc] == knight:
                 return True
 
-        # King attacks
+
         king = "K" if by_white else "k"
         for dr in (-1, 0, 1):
             for dc in (-1, 0, 1):
@@ -131,7 +131,7 @@ class ChessGame:
                 if inside(nr, nc) and self.b[nr][nc] == king:
                     return True
 
-        # Bishop, rook and queen attacks
+
         groups = [
             (
                 ((-1, -1), (-1, 1), (1, -1), (1, 1)),
@@ -172,7 +172,7 @@ class ChessGame:
         kind = p.upper()
         moves = []
 
-        # Move tuple: from row, from col, to row, to col, special
+
         def add(nr, nc):
             if not inside(nr, nc):
                 return False
@@ -230,7 +230,7 @@ class ChessGame:
                     if dr or dc:
                         add(r + dr, c + dc)
 
-            # Castling
+
             if white and (r, c) == (7, 4) and not self.in_check(True):
                 if (
                     self.castle["K"]
@@ -331,7 +331,7 @@ class ChessGame:
         else:
             self.b[nr][nc] = p
 
-        # Castling rights
+
         if p == "K":
             self.castle["K"] = self.castle["Q"] = False
         elif p == "k":

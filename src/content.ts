@@ -6,7 +6,6 @@ export type Project = {
   screenshots: { src: string; alt: string }[]
 }
 
-// Portfolio details verified from the owner's notes and local project files.
 export const profile = {
   name: 'Photchara Thusanasonvijarn',
   shortName: 'PT',

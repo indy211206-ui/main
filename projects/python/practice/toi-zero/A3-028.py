@@ -1,4 +1,4 @@
-# Minesweeper
+
 def minesweeper():
     rows, cols = map(int, input().split())
     n_bombs = int(input())

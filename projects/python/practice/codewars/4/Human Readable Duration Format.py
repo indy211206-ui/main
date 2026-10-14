@@ -27,7 +27,7 @@ def format_duration(ss):
         return " and ".join(result)
 
     return ", ".join(result[:-1]) + " and " + result[-1]
-# smarter
+
 times = [("year", 365 * 24 * 60 * 60),
          ("day", 24 * 60 * 60),
          ("hour", 60 * 60),

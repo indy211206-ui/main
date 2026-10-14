@@ -4,7 +4,7 @@ scores = []
 for x in line:
     scores.append(int(x))
 
-# Line 1: student list
+
 students = ''
 for i in range(n_student):
     if i > 0:
@@ -18,7 +18,7 @@ if n_student == 0:
     print('Average score: ')
     print('Students who scored above average:')
 else:
-    # Find max, min manually
+
     h_score = scores[0]
     l_score = scores[0]
     total = 0

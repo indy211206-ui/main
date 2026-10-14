@@ -191,7 +191,7 @@ class PocketChess:
                 piece = self.board.piece_at(square)
                 if piece:
                     glyph = PIECE_GLYPHS[piece]
-                    # A subtle contrasting outline makes the Unicode pieces easier to read.
+
                     fg = "#FAFAF5" if piece.color == chess.WHITE else "#171A17"
                     outline = "#343B32" if piece.color == chess.WHITE else "#D7DED2"
                     self.canvas.create_text(
@@ -211,7 +211,7 @@ class PocketChess:
                     self.canvas.create_oval(x1 + 5, y1 + 5, x2 - 5, y2 - 5,
                                             outline=LEGAL_DOT, width=4)
 
-        # Coordinates
+
         for i in range(8):
             file_label = "abcdefgh"[7 - i if self.flipped else i]
             rank_label = str(i + 1 if self.flipped else 8 - i)
@@ -318,7 +318,7 @@ class PocketChess:
         score = 0
         for square, piece in board.piece_map().items():
             value = VALUES[piece.piece_type]
-            # Mild center preference for pawns and minor pieces.
+
             file_c = abs(3.5 - chess.square_file(square))
             rank_c = abs(3.5 - chess.square_rank(square))
             center_bonus = int(12 - 3 * (file_c + rank_c))
@@ -335,7 +335,7 @@ class PocketChess:
         maximizing = self.board.turn == chess.WHITE
         moves = list(self.board.legal_moves)
         random.shuffle(moves)
-        # Try captures first to help the simple search find tactical moves.
+
         moves.sort(key=lambda m: self.board.is_capture(m), reverse=True)
 
         if maximizing:
@@ -363,7 +363,7 @@ class PocketChess:
         return best_score, best_move
 
     def choose_computer_move(self):
-        # Search a little deeper in quieter positions; keep the app responsive.
+
         _, move = self.minimax(2, -float("inf"), float("inf"))
         if move is None:
             legal = list(self.board.legal_moves)

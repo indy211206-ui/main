@@ -1,8 +1,8 @@
-# Python hangman game
+
 from wordslist import word
 import random
 
-#Dictionary of key:()
+
 hangman_art = {0: (),
                1: (" o ",
                    "   ",

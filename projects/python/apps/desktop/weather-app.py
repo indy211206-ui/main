@@ -136,7 +136,7 @@ class WeatherApp(QWidget):
         self.emoji_label.setText(self.get_weather_emoji(weather_id))
         self.description_label.setText(f"{weather_desc}")
     @staticmethod
-        # belongs to a class but don't require any instance specific data
+
     def get_weather_emoji(weather_id):
 
         if 200 <= weather_id <= 232:

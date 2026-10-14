@@ -1,4 +1,4 @@
-# words for hangman game
+
 
 word = [
     "Aardvark",

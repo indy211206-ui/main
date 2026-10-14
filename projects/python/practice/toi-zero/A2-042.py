@@ -8,7 +8,7 @@ while True:
         parts = command.split(' ')
         name, qty = parts[1], int(parts[2])
         if name in stock:
-            stock[name] += qty       # add, not overwrite
+            stock[name] += qty
         else:
             stock[name] = qty
 
@@ -19,18 +19,18 @@ while True:
         if qty > current:
             output.append('Not enough stock for ' + name)
             if name in stock:
-                del stock[name]      # remove item
+                del stock[name]
         else:
             stock[name] -= qty
             if stock[name] == 0:
-                del stock[name]      # remove if zero
+                del stock[name]
 
     elif command == 'CHECK':
         low = []
         for k in stock:
             if stock[k] < 5:
                 low.append(k)
-        # manual sort
+
         for i in range(len(low)):
             for j in range(i+1, len(low)):
                 if low[i] > low[j]:
@@ -45,7 +45,7 @@ while True:
         items = []
         for k in stock:
             items.append((k, stock[k]))
-        # manual sort by name
+
         for i in range(len(items)):
             for j in range(i+1, len(items)):
                 if items[i][0] > items[j][0]:

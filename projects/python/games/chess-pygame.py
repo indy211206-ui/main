@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 Pygame Chess - single file, no image or font assets needed.
 
@@ -18,9 +18,9 @@ import time
 
 import pygame
 
-# =====================================================================
-#                            CHESS ENGINE
-# =====================================================================
+
+
+
 FILES = "abcdefgh"
 
 
@@ -29,12 +29,12 @@ def sq_name(s):
 
 
 KN = [(1, 2), (2, 1), (-1, 2), (-2, 1), (1, -2), (2, -1), (-1, -2), (-2, -1)]
-DIRS = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]  # first 4 = rook dirs
+DIRS = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
 
 KNIGHT_T = [[] for _ in range(64)]
 KING_T = [[] for _ in range(64)]
 RAYS = [[[] for _ in range(8)] for _ in range(64)]
-PAWN_FROM_W = [[] for _ in range(64)]  # squares from which a white pawn attacks sq
+PAWN_FROM_W = [[] for _ in range(64)]
 PAWN_FROM_B = [[] for _ in range(64)]
 for _sq in range(64):
     _f, _r = _sq & 7, _sq >> 3
@@ -286,12 +286,12 @@ def san(st, m, legal):
     return s
 
 
-# ------------------------------------------------------------------ AI
+
 VALUE = {".": 0, "p": 100, "n": 320, "b": 330, "r": 500, "q": 900, "k": 0}
 CENTER = [int(((3.5 - abs((s & 7) - 3.5)) + (3.5 - abs((s >> 3) - 3.5))) * 4) for s in range(64)]
 MATE = 100000
 INF = 10 ** 9
-LEVELS = {1: (1, 0.4), 2: (2, 1.5), 3: (3, 4.0), 4: (4, 9.0)}  # (max depth, seconds)
+LEVELS = {1: (1, 0.4), 2: (2, 1.5), 3: (3, 4.0), 4: (4, 9.0)}
 
 
 class Abort(Exception):
@@ -392,12 +392,12 @@ def best_move(st, level, stop):
     return best
 
 
-# =====================================================================
-#                              GRAPHICS
-# =====================================================================
+
+
+
 W, H = 1000, 720
-BX, BY, SQ = 40, 40, 80          # board origin / square size
-PX, PW = 710, 270                # side panel
+BX, BY, SQ = 40, 40, 80
+PX, PW = 710, 270
 C_LIGHT, C_DARK = (240, 217, 181), (181, 136, 99)
 C_TEXT, C_DIM = (236, 234, 228), (150, 148, 142)
 C_GOLD, C_RED = (255, 214, 90), (240, 100, 90)
@@ -467,13 +467,13 @@ def build_sprite(kind, white, size):
     det_c = (34, 32, 30) if white else (232, 232, 236)
     surf = pygame.Surface((n, n), pygame.SRCALPHA)
     r = max(1, round(0.022 * n))
-    for poly in body:  # outline pass (thick stroke around every polygon)
+    for poly in body:
         pts = [(x * n, y * n) for x, y in poly]
         pygame.draw.polygon(surf, line_c, pts)
         pygame.draw.polygon(surf, line_c, pts, 2 * r)
         for p in pts:
             pygame.draw.circle(surf, line_c, p, r)
-    for poly in body:  # fill pass
+    for poly in body:
         pygame.draw.polygon(surf, fill_c, [(x * n, y * n) for x, y in poly])
     for poly in detail:
         pygame.draw.polygon(surf, det_c, [(x * n, y * n) for x, y in poly])
@@ -491,9 +491,9 @@ def aa_disc(radius, color, ring_inner=None):
     return pygame.transform.smoothscale(surf, (d, d))
 
 
-# =====================================================================
-#                                 APP
-# =====================================================================
+
+
+
 B_NEW, B_UNDO, B_FLIP, B_MODE, B_SIDE, B_LVL_DN, B_LVL_UP = range(7)
 
 
@@ -531,7 +531,7 @@ class App:
         self.running = True
         self.new_game()
 
-    # ------------------------------------------------------------ game flow
+
     def refresh(self):
         self.legal = legal_moves(self.cur)
         self.check = in_check(self.cur, self.cur.white)
@@ -593,7 +593,7 @@ class App:
     def human_turn(self):
         return not self.over and not self.busy and (not self.vs_computer or self.cur.white == self.human_white)
 
-    # ------------------------------------------------------------ AI thread
+
     def maybe_start_ai(self):
         if self.over or not self.vs_computer or self.cur.white == self.human_white or self.busy:
             return
@@ -626,7 +626,7 @@ class App:
             if mv is not None:
                 self.apply_move(mv)
 
-    # ------------------------------------------------------------ geometry
+
     def sq_to_screen(self, sq):
         f, r = sq & 7, sq >> 3
         return BX + (7 - f if self.flipped else f) * SQ, BY + (r if self.flipped else 7 - r) * SQ
@@ -675,7 +675,7 @@ class App:
         elif bid == B_LVL_UP:
             self.level = min(4, self.level + 1)
 
-    # ------------------------------------------------------------ input
+
     def try_move(self, frm, to):
         cands = [m for m in self.legal if m[0] == frm and m[1] == to]
         if not cands:
@@ -742,7 +742,7 @@ class App:
         elif key == pygame.K_ESCAPE:
             self.sel, self.dragging, self.promo_pending = -1, False, False
 
-    # ------------------------------------------------------------ drawing
+
     def text(self, font, s, pos, color, center_in=None):
         img = font.render(s, True, color)
         if center_in is not None:
@@ -832,7 +832,7 @@ class App:
         if self.promo_pending:
             self.draw_promo()
 
-    # ------------------------------------------------------------ window
+
     def view_transform(self, screen):
         sw, sh = screen.get_size()
         scale = min(sw / W, sh / H)
@@ -876,7 +876,7 @@ class App:
 
 def main():
     pygame.init()
-    sys.setswitchinterval(0.001)  # keep the UI responsive while the AI thinks
+    sys.setswitchinterval(0.001)
     pygame.display.set_caption("Pygame Chess")
     screen = pygame.display.set_mode((W, H), pygame.RESIZABLE)
     App().run(screen)

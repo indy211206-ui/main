@@ -6,7 +6,7 @@ def parse_time(s):
 
     h_str, m_str = parts
 
-    # Minutes must be exactly 2 digits
+
     if len(m_str) != 2:
         return None
 
@@ -16,7 +16,7 @@ def parse_time(s):
     except ValueError:
         return None
 
-    # Validate ranges
+
     if h < 0 or h > 23:
         return None
     if m < 0 or m > 59:
@@ -29,28 +29,28 @@ def solve():
     line1 = input().strip()
     line2 = input().strip()
 
-    i = parse_time(line1)  # entry time in minutes
-    o = parse_time(line2)  # exit time in minutes
+    i = parse_time(line1)
+    o = parse_time(line2)
 
-    # Validate inputs
+
     if i is None or o is None:
         print("ERROR")
         return
 
-    # Exit must be after entry (same day)
+
     if o <= i:
         print("ERROR")
         return
 
-    diff = o - i  # difference in minutes
+    diff = o - i
 
-    # Less than 15 minutes: FREE
+
     if diff < 15:
         print("FREE")
         return
 
-    # Calculate hours (ceiling division)
-    hours = (diff + 59) // 60  # rounds up any partial hour
+
+    hours = (diff + 59) // 60
 
     rates = {1: 25, 2: 50, 3: 80, 4: 110, 5: 145, 6: 180}
 

@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout
 from PyQt5.QtCore import QTimer, QTime, Qt
 
-#from main import Stopwatch
+
 
 class StopWatch(QWidget):
     def __init__(self):
