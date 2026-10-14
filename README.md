@@ -1,6 +1,6 @@
 # Computer Science Portfolio
 
-A responsive React, TypeScript, and Vite portfolio for documenting a student's Computer Science work and learning. Candidate projects and bracketed profile fields are intentionally labeled; replace them only with details you can verify.
+A responsive React, TypeScript, and Vite portfolio for documenting a student's Computer Science work and learning. Source projects and practice files are organized under [`projects/`](projects/README.md).
 
 ## Requirements
 
@@ -26,6 +26,10 @@ Update `src/content.ts` to change your name, introduction, education, contact li
 
 Self-study courses can be listed without certificates. Label them as independent learning and add the creator or provider, course link, topics completed, and any project or practice work. Do not imply a credential that was not awarded.
 
+## Project source code
+
+The [`projects/`](projects/README.md) folder groups Python apps and games, C++ practice, Codewars kata, and TOI-ZERO solutions. Generated binaries, virtual environments, caches, and editor settings are excluded. Some files are learning exercises and may be incomplete.
+
 ## Checks and production build
 
 ```sh
@@ -47,4 +51,4 @@ The `Deploy portfolio to GitHub Pages` workflow builds and publishes the site wh
 - Replace candidate projects with completed work or keep the candidate label.
 - Add evidence links for any achievement.
 - Add a professional email, GitHub profile, and actual résumé only if you want them public.
-- The reviewed local weather-app source has an API credential in the code. Rotate it and remove it from the source before publishing or sharing that project.
+- The shared weather-app source reads its key from `OPENWEATHERMAP_API_KEY`; never commit API credentials. Rotate any key that was previously exposed in a shared copy.

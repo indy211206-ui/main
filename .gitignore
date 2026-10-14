@@ -2,3 +2,23 @@ node_modules/
 dist/
 *.tsbuildinfo
 .vite/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Native build output
+build/
+cmake-build-*/
+*.exe
+*.dll
+*.pdb
+*.obj
+*.ilk
+
+# Local editor files
+.idea/
+.vscode/
+*.code-workspace
